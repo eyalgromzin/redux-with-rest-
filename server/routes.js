@@ -3,18 +3,14 @@ const services = require('./services')
 exports.addRoutes = function addRoutes(app){
   
   app.get('/api/getPrograms', (req, res) => {
-    services.getAllPrograms(req, res)
+    const searchText = req.query.searchText
+
+    services.getResults(searchText).then(res =>{
+      res.send('results');
+    }).catch(e => {
+      res.send({success: false})
+    })
+
   });
   
-  app.post('/api/changeIsToWatchChange', (req, res) => {
-    services.changeIsToWatchChange(req, res)
-  });
-  
-  app.post('api/addProgram', (req, res) => {
-    services.addProgram(req, res)
-  })
-  
-  app.post('/api/fetchHistory', (req, res) => {
-    services.getProgramHistory(req, res)
-  });
 }
