@@ -9,8 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const {addRoutes} = require('./routes')
 
-const db = require('./databasepg')
-
 addRoutes(app)
 
 //jsut update the db for urls for new urls
