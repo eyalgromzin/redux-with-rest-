@@ -8,20 +8,18 @@ import {
 } from '../../redux/searchSlice';
 
 const SearchField = () => {
-  const [text, setText] = useState('')
-
+  const dispatch = useDispatch();
 
   const onSearchTextChange = (e) => {
     const text = e.target.value
+
+    dispatch(setSearchText(text))
+
+    let s = 4
   }
-
-  
-
 
   return <div>
     <input type='text' className={styles.searchInput} onChange={onSearchTextChange} />
-
-    <button onClick={search} ></button>
   </div>
 }
 

@@ -1,21 +1,29 @@
 import React, { useLayoutEffect, useEffect, useState, useCallback, useMemo, useRef } from "react";
-import styles from "./results.css";
-import { useSelector } from 'react-redux';
+import styles from "./results.module.css";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectSearchText,
+  selectResults
+} from '../../redux/searchSlice';
 
-const SearchField = ({results, searchedText}) => {
-  const search = async () => {
-    let results = await getResultsFromWeb(text)
+const Results = () => {
+  const dispatch = useDispatch()
 
-    dispatch(to redux)
-  }
-
-  const count = useSelector(selectResults);
+  const searchText = useSelector(selectSearchText);
+  const results = useSelector(selectResults);
 
   return <div>
-    <input type='text' className={styles.searchInput} />
-
-    <button onClick={search}
+    {
+      results.map(resultI => <div>
+        {
+          <div className={styles.resultRow}>
+            <div>{resultI.title}</div>
+            <div>{resultI.url}</div>
+          </div>
+        }
+      </div>)
+    }
   </div>
 }
 
-export default SearchField
+export default Results
