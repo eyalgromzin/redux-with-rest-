@@ -14,6 +14,18 @@ exports.addRoutes = function addRoutes(app){
 
   });
 
+  //for testing probably
+  app.get('/api/getResults', (req, res) => {
+    const searchText = req.query.searchText  //post param
+
+    services.getResults(searchText).then(results =>{
+      res.send(results);
+    }).catch(e => {
+      res.send({isSuccess: false, error: e})
+    })
+
+  });
+
   app.post('/api/addToHistory', (req, res) => {
     // const searchText = req.query.searchText  //get param
     const searchText = req.body.params.searchText  //post param

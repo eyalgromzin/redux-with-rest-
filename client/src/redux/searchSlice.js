@@ -40,7 +40,7 @@ export const counterSlice = createSlice({
       state.history = action.payload;
     },
     addToHistory: (state, action) => {
-      state.history.push(action.payload)
+      state.history.unshift(action.payload)
     },
   },
 });

@@ -75,7 +75,7 @@ const getResults = async (searchText) => {
 
 
 const addToHistory = async (searchText) => {  
-    history.history.push(searchText)
+    history.history.unshift(searchText)
   
     await saveHistoryToFile()  
 }
