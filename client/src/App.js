@@ -1,6 +1,4 @@
-import React, { useLayoutEffect, useEffect, useState, useCallback, useMemo, useRef } from "react";
-import logo from './logo.svg';
-import { Counter } from './redux/Counter';
+import React, { useEffect, useState } from "react";
 import styles from './App.module.css';
 import SearchField from "./components/searchField/searchField";
 import SearchButton from "./components/searchButton/searchButton";
