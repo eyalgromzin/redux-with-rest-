@@ -9,6 +9,7 @@ import {search} from '../common'
 const HistoryItem = ({text, i}) => {
   const dispatch = useDispatch()
 
+  
   const onItemClick = () => {
     dispatch(setSearchText(text))
 
