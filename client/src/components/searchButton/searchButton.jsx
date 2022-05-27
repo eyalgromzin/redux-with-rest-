@@ -11,9 +11,9 @@ const SearchButton = () => {
   
   const dispatch = useDispatch()    
 
-  const onSearchClick = () => {
+  const onSearchClick = useCallback(() => {
     search(dispatch, searchText, true)
-  }
+  }, [searchText])
 
   return <div className={styles.searchButton} onClick={onSearchClick} >
     Go
