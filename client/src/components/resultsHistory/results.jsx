@@ -44,7 +44,7 @@ const Results = () => {
     </div>
   }
 
-  return <div>
+  return <div className={styles.resultsContainer}>
     {
       resultsToShow.map(resultI => <div key={resultI.text + resultI.url}>
         {
@@ -57,7 +57,7 @@ const Results = () => {
     }
 
     { 
-      results && results.length > 0 && 
+      results && results.length > 0 && resultsToShow.length < results.length &&  
       <div className={styles.showMoreButton} onClick={() => setMaxIndexToShow(maxIndexToShow + PAGE_SIZE)}>
         show more 
       </div>
