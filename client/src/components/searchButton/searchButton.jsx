@@ -4,20 +4,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
   setSearchResults,
+  addToHistory,
 } from '../../redux/searchSlice';
 import {getResultsFromWeb} from '../../api'
 
 const SearchButton = ({text}) => {
   const searchText = useSelector(selectSearchText)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch()    
 
   const search = async () => {
+    dispatch(addToHistory(searchText))
+
     let results = await getResultsFromWeb(searchText)
 
-    dispatch(setSearchResults(results))
-
-    let s = 4
+    if(results.data){
+      dispatch(setSearchResults(results.data))
+    }
   }
 
   return <div className={styles.searchButton} onClick={search} >

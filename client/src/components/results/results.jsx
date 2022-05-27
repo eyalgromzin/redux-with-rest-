@@ -3,13 +3,12 @@ import styles from "./results.module.css";
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
-  selectResults
+  selectResults,
+  selectLastSearchText
 } from '../../redux/searchSlice';
 
 const Results = () => {
-  const dispatch = useDispatch()
-
-  const searchText = useSelector(selectSearchText);
+  const lastSearchText = useSelector(selectLastSearchText);   
   const results = useSelector(selectResults);
 
   return <div>

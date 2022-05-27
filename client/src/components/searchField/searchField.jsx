@@ -18,9 +18,7 @@ const SearchField = () => {
     let s = 4
   }
 
-  return <div>
-    <input type='text' className={styles.searchInput} onChange={onSearchTextChange} />
-  </div>
+  return <input type='text' placeholder="search text" className={styles.searchInput} onChange={onSearchTextChange} />
 }
 
 export default SearchField
