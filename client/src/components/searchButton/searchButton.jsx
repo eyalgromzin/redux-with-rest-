@@ -6,14 +6,18 @@ import {
 } from '../../redux/searchSlice';
 import {search} from '../common'
 
-const SearchButton = ({text}) => {
+const SearchButton = () => {
   const searchText = useSelector(selectSearchText)
-
+  
   const dispatch = useDispatch()    
 
-  return <div className={styles.searchButton} onClick={() => search(dispatch, searchText, true)} >
+  const onSearchClick = () => {
+    search(dispatch, searchText, true)
+  }
+
+  return <div className={styles.searchButton} onClick={onSearchClick} >
     Go
   </div>
 }
 
-export default SearchButton
+export default React.memo(SearchButton, () => true)

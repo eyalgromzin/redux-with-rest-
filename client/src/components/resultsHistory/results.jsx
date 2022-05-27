@@ -33,11 +33,11 @@ const Results = () => {
     
     return <div>
       {
-        partsWithSearchedText.map(partI => {
+        partsWithSearchedText.map((partI, i) => {
           if(partI === wordToHighlight){
-            return <span className={styles.highlighted}>{partI} </span>
+            return <span className={styles.highlighted} key={i}>{partI} </span>
           }else{
-            return <span> {partI}</span>
+            return <span key={i}> {partI}</span>
           }
         })
       }
@@ -46,9 +46,9 @@ const Results = () => {
 
   return <div>
     {
-      resultsToShow.map(resultI => <div>
+      resultsToShow.map(resultI => <div key={resultI.text + resultI.url}>
         {
-          <div className={styles.resultRow}>
+          <div className={styles.resultRow} >
             <div className={styles.resultTitle}>{createResultText(resultI.text, lastSearchedText)}</div>
             <div className={styles.resultUrl}>{resultI.url}</div>
           </div>

@@ -6,7 +6,7 @@ import {
 } from '../../redux/searchSlice';
 import {search} from '../common'
 
-const HistoryItem = ({text}) => {
+const HistoryItem = ({text, i}) => {
   const dispatch = useDispatch()
 
   const onItemClick = () => {
@@ -15,7 +15,7 @@ const HistoryItem = ({text}) => {
     search(dispatch, text, false)
   }
 
-  return <div className={styles.historyRow} onClick={onItemClick}>
+  return <div className={styles.historyRow} onClick={onItemClick} key={i}>
     {text}
   </div>
 }

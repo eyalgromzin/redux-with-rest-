@@ -16,7 +16,8 @@ const HistoryList = () => {
     <div className={styles.historyListHeader}>search history</div>
     <div className={styles.itemsContainer}>
       {
-        history.map(textI => <HistoryItem text={textI} />)
+        //no point in adding keys here cause there are duplicates. and its only text. 
+        history.map((textI, i) => <HistoryItem text={textI} i={i} key={i} />)
       }
     </div>
   </div>
