@@ -33,6 +33,7 @@ const Results = () => {
     
     return <div>
       {
+        //can be the same text so cant set key
         partsWithSearchedText.map((partI, i) => {
           if(partI === wordToHighlight){
             return <span className={styles.highlighted} key={i}>{partI} </span>
