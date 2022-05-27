@@ -1,0 +1,28 @@
+.showMoreButton{
+  background-color: bisque;
+  cursor: pointer;
+  margin: 10px 200px;
+}
+
+.resultRow{
+  /* border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black; */
+  margin: 30px 200px;
+}
+
+.resultRow:hover{
+  background-color: rgb(214, 225, 255);
+}
+
+.highlighted{
+  background-color: yellow;
+}
+
+.resultTitle{
+  text-align: left;
+}
+
+.resultUrl{
+  text-align: left;
+}

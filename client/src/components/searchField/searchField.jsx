@@ -10,15 +10,15 @@ import {
 const SearchField = () => {
   const dispatch = useDispatch();
 
+  const searchFieldText = useSelector(selectSearchText)
+
   const onSearchTextChange = (e) => {
     const text = e.target.value
 
     dispatch(setSearchText(text))
-
-    let s = 4
   }
 
-  return <input type='text' placeholder="search text" className={styles.searchInput} onChange={onSearchTextChange} />
+  return <input type='text' placeholder="search text" value={searchFieldText} className={styles.searchInput} onChange={onSearchTextChange} />
 }
 
 export default SearchField

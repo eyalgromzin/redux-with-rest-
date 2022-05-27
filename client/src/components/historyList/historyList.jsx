@@ -7,17 +7,18 @@ import {
   selectHistory
 } from '../../redux/searchSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import HistoryItem from "./historyItem";
 
 const HistoryList = () => {
   const history = useSelector(selectHistory);
 
   return <div className={styles.history}>
-    <div className={styles.historyListHeader}>HistoryList</div>
-    {
-      history.map(textI => <div className={styles.historyRow}>
-        {textI}
-      </div>)
-    }
+    <div className={styles.historyListHeader}>search history</div>
+    <div className={styles.itemsContainer}>
+      {
+        history.map(textI => <HistoryItem text={textI} />)
+      }
+    </div>
   </div>
 }
 

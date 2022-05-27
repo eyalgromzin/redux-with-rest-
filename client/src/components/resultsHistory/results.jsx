@@ -4,27 +4,69 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
   selectResults,
-  selectLastSearchText
+  selectLastSearchedText,
+  selectMaxIndexToShow
 } from '../../redux/searchSlice';
+import { PAGE_SIZE } from '../../constants'
 
-const ResultsHistory = () => {
-  const lastSearchText = useSelector(selectLastSearchText);   
+const Results = () => {
+  const [maxIndexToShow, setMaxIndexToShow] = useState(PAGE_SIZE)
+  const lastSearchedText = useSelector(selectLastSearchedText);   
   const results = useSelector(selectResults);
 
-  
+  let resultsToShow = results.slice(0, maxIndexToShow);
+
+  if(lastSearchedText){
+    let f = 4
+  }
+
+  const createResultText = (text, wordToHighlight) => {
+    let parts = text.split(new RegExp(wordToHighlight, 'i'))
+
+    let partsWithSearchedText = []
+    parts.forEach((partI, i) => {
+      partsWithSearchedText.push(partI)
+      if(i !== parts.length - 1){
+        partsWithSearchedText.push(wordToHighlight)
+      }
+    })
+    
+    return <div>
+      {
+        partsWithSearchedText.map(partI => {
+          if(partI === wordToHighlight){
+            return <span className={styles.highlighted}>{partI} </span>
+          }else{
+            return <span> {partI}</span>
+          }
+        })
+      }
+    </div>
+  }
 
   return <div>
     {
-      results.map(resultI => <div>
+      resultsToShow.map(resultI => <div>
         {
           <div className={styles.resultRow}>
-            <div>{resultI.title}</div>
-            <div>{resultI.url}</div>
+            <div className={styles.resultTitle}>{createResultText(resultI.text, lastSearchedText)}</div>
+            <div className={styles.resultUrl}>{resultI.url}</div>
           </div>
         }
       </div>)
     }
+
+    { 
+      results && results.length > 0 && 
+      <div className={styles.showMoreButton} onClick={() => setMaxIndexToShow(maxIndexToShow + PAGE_SIZE)}>
+        show more 
+      </div>
+    }
+    {
+      results && results.length == 0 && lastSearchedText &&
+      <div>no results found</div>
+    }
   </div>
 }
 
-export default ResultsHistory
+export default Results

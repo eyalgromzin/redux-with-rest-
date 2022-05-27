@@ -1,12 +1,23 @@
 .history{
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+  width: 200px;
+}
+
+.historyRow:hover{
+  background-color: rgb(225, 234, 255);
 }
 
 .historyRow{
-  background-color: aqua;
+  cursor: pointer;
 }
 
 .historyListHeader{
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
+  height: 30px
+}
+
+.itemsContainer{
+  height: 500px;
+  overflow-y: auto;
 }

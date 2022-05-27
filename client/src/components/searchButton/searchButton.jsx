@@ -3,31 +3,15 @@ import styles from './searchButton.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
-  setSearchResults,
-  addToHistory,
 } from '../../redux/searchSlice';
-import {getResultsFromWeb, addToHistoryOnServer} from '../../api'
+import {search} from '../common'
 
 const SearchButton = ({text}) => {
   const searchText = useSelector(selectSearchText)
 
   const dispatch = useDispatch()    
 
-  const search = async () => {
-    
-    let results = await getResultsFromWeb(searchText)
-    
-    let isAdded = await addToHistoryOnServer(searchText)
-
-    if(isAdded){
-      dispatch(addToHistory(searchText))
-    }
-    if(results){
-      dispatch(setSearchResults(results))
-    }
-  }
-
-  return <div className={styles.searchButton} onClick={search} >
+  return <div className={styles.searchButton} onClick={() => search(dispatch, searchText, true)} >
     Go
   </div>
 }

@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  value: 0,
-  status: 'idle',
   searchText: '',
-  lastSearchText: '',
+  lastSearchedText: '',
   searchResults: [],
   history: [],
+  maxIndixToShow: 0,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -28,28 +27,14 @@ export const counterSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
     setSearchResults: (state, action) => {
       state.searchResults = action.payload;
     },
     setSearchText: (state, action) => {
       state.searchText = action.payload;
     },
-    setLastSearchText: (state, action) => {
-      state.lastSearchText = action.payload;
+    setLastSearchedText: (state, action) => {
+      state.lastSearchedText = action.payload;
     },
     setHistory: (state, action) => {
       state.history = action.payload;
@@ -60,7 +45,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { increment, setSearchText, setSearchResults, setHistory, addToHistory, incrementByAmount } = counterSlice.actions;
+export const { increment, setSearchText, setSearchResults, setHistory, setLastSearchedText, setMaxIndexToShow, addToHistory, incrementByAmount } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -69,8 +54,8 @@ export const selectSearchText = (state) => {
   return state.search.searchText;
 }
 
-export const selectLastSearchText = (state) => {
-  return state.search.lastSearchText;
+export const selectLastSearchedText = (state) => {
+  return state.search.lastSearchedText;
 }
 
 export const selectResults = (state) => {
@@ -79,6 +64,10 @@ export const selectResults = (state) => {
 
 export const selectHistory = (state) => {
   return state.search.history;
+}
+
+export const selectMaxIndexToShow = (state) => {
+  return state.search.maxIndixToShow;
 }
 
 
