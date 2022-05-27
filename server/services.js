@@ -1,5 +1,38 @@
 const { default: axios } = require('axios');
+var path = require('path'); 
+const fsPromises = require('fs').promises
+const fs2 = require('fs')
 
+history = {
+  history: []
+}
+
+const HISTORY_SIZE = 10
+const HISTORY_FILE_PATH = './history.json'
+
+const createHistoryFile = () => {
+  fsPromises.writeFile(HISTORY_FILE_PATH,"")
+}
+
+if (!fs2.existsSync(HISTORY_FILE_PATH)) {
+  createHistoryFile()
+}
+    
+const initHistoryFromFile = async () => {
+  const loadedHistory = await fsPromises.readFile(HISTORY_FILE_PATH)
+  
+  const historyJson = loadedHistory.toString()
+
+  if(historyJson){
+    history = JSON.parse(historyJson)
+  }
+}
+
+initHistoryFromFile()
+
+const saveHistoryToFile = async () => {
+  await fsPromises.writeFile(HISTORY_FILE_PATH, JSON.stringify(history))  //fails
+}
 
 const getDataFromResult = (result, res) => {
   if(result.FirstURL){
@@ -39,6 +72,24 @@ const getResults = async (searchText) => {
   return res
 }
 
+
+
+const addToHistory = async (searchText) => {  
+    history.history.push(searchText)
+  
+    await saveHistoryToFile()  
+}
+
+const getHistory = async () => {
+  return history.history
+}
+
+
+
+
+
 module.exports = {
   getResults,
+  getHistory,
+  addToHistory
 };

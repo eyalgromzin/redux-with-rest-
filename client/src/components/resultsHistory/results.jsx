@@ -7,9 +7,11 @@ import {
   selectLastSearchText
 } from '../../redux/searchSlice';
 
-const Results = () => {
+const ResultsHistory = () => {
   const lastSearchText = useSelector(selectLastSearchText);   
   const results = useSelector(selectResults);
+
+  
 
   return <div>
     {
@@ -25,4 +27,4 @@ const Results = () => {
   </div>
 }
 
-export default Results
+export default ResultsHistory

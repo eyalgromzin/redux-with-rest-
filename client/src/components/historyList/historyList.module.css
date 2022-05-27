@@ -1,0 +1,12 @@
+.history{
+  background-color: antiquewhite;
+}
+
+.historyRow{
+  background-color: aqua;
+}
+
+.historyListHeader{
+  font-size: 30px;
+  font-weight: 600;
+}

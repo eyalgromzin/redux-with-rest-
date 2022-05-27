@@ -4,10 +4,11 @@ import { Counter } from './redux/Counter';
 import styles from './App.module.css';
 import SearchField from "./components/searchField/searchField";
 import SearchButton from "./components/searchButton/searchButton";
-import Results from "./components/results/results";
+import Results from "./components/resultsHistory/results";
+import HistoryList from "./components/historyList/historyList";
 import { useSelector, useDispatch } from 'react-redux';
-import {loadHistory} from './components/history'
 import { selectHistory, setHistory } from "./redux/searchSlice";
+import {getHistory} from './api'
 
 function App() {
   const [results, setResults] = useState()
@@ -15,20 +16,20 @@ function App() {
 
   const history = useSelector(selectHistory)
 
-  const loadHistoryFromStorage = async () => {
-    const history = await loadHistory()
+  const loadHistoryFromServer = async () => {
+    const history = await getHistory()
 
-    dispatch(setHistory(history))
+    dispatch(setHistory(history.data))
   }
 
   useEffect(() => {
-    loadHistoryFromStorage()
+    loadHistoryFromServer()
   }, [])
   
   return <div className={styles.mainPage}>
     { history && history.length > 0 && 
       <div className={styles.sideBar}>
-        <Results />
+        <HistoryList />
       </div>
     }
     <div className={styles.mainContent}>

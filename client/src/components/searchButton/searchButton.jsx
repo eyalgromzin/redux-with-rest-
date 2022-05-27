@@ -6,7 +6,7 @@ import {
   setSearchResults,
   addToHistory,
 } from '../../redux/searchSlice';
-import {getResultsFromWeb} from '../../api'
+import {getResultsFromWeb, addToHistoryOnServer} from '../../api'
 
 const SearchButton = ({text}) => {
   const searchText = useSelector(selectSearchText)
@@ -14,12 +14,16 @@ const SearchButton = ({text}) => {
   const dispatch = useDispatch()    
 
   const search = async () => {
-    dispatch(addToHistory(searchText))
-
+    
     let results = await getResultsFromWeb(searchText)
+    
+    let isAdded = await addToHistoryOnServer(searchText)
 
-    if(results.data){
-      dispatch(setSearchResults(results.data))
+    if(isAdded){
+      dispatch(addToHistory(searchText))
+    }
+    if(results){
+      dispatch(setSearchResults(results))
     }
   }
 
