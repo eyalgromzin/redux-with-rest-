@@ -1,11 +1,15 @@
-to run project: 
-npm run dev
+1. install the project:
+  - run "npm i" in main folder
+  - run "npm i" in mainFolder/client
 
-added redux roolkit 
-used axios for calls.
+2. to run project, open console in main folder and run "npm run dev" 
 
-in the instructions there is a requirement for POST and for GET , added both. 
 
+about the project: 
+  - im using redux roolkit for state management
+  - axios for api calls
+
+  - in the instructions there is a requirement for POST and for GET , added both. 
+    to get json just run for example: http://localhost:5000/api/getResults?searchText=asd
+    
 thats it. 
-
-to get json just run for example: http://localhost:5000/api/getResults?searchText=asd
